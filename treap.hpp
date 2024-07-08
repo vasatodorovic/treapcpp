@@ -23,4 +23,6 @@ TreapNode* remove(TreapNode* treap, int k);
 void rotateRight(TreapNode* &treap);
 void rotateLeft(TreapNode* &treap);
 
+void printTreap(TreapNode* root,int depth=0);
+
 #endif

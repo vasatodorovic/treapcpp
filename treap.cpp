@@ -1,10 +1,14 @@
 #include "treap.hpp"
+#include <iostream>
+
+using namespace std;
 
 TreapNode* insert(TreapNode* treap, int k, int p)
 {
     if(!treap)
     {
         return new TreapNode(k,p);
+        
     }
 
     if(k < treap->key)
@@ -23,6 +27,7 @@ TreapNode* insert(TreapNode* treap, int k, int p)
             rotateLeft(treap);
         }
     }
+    return treap;
 
 }
 TreapNode* remove(TreapNode* treap, int k)
@@ -68,6 +73,7 @@ TreapNode* remove(TreapNode* treap, int k)
             }
         }
     }
+    return treap;
 }
 
 void rotateRight(TreapNode* &treap)
@@ -84,4 +90,22 @@ void rotateLeft(TreapNode* &treap)
     treap->right = r->left;
     r->left = treap;
     treap = r;
+}
+
+void printTreap(TreapNode* root, int depth)
+{
+    if(!root)
+    {
+        return;
+    }
+    printTreap(root->right,depth+1);
+    
+    for(int i=0;i<depth;i++)
+    {
+        cout <<"       ";
+    }
+    
+    cout << "(" << root->key <<", "<<root->priority <<")\n";
+
+    printTreap(root->left,depth+1);
 }
