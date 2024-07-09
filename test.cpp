@@ -117,21 +117,37 @@ int main(int argc, char**argv)
     vector<double> insert_results;
     vector<double> remove_results;
 
-    for(auto &d : directories)
-    {
-        vector<TreapNode*> treaps = upload_treaps(d);
-        //insert_results.push_back(insert_test(treaps));
-        remove_results.push_back(remove_test(treaps));
-    }
+    //PRIKAZ OSNOVNIH OPERACIJA
+    TreapNode* t = upload_treaps(directories[0])[0];
+    printTreap(t);
+    cout<<"-------------\n";
+    //t = remove(t,-11);
+    //printTreap(t);
+
+    auto [left,right] = split(t, 0);
+    printTreap(left);
+    cout <<"---------\n";
+    printTreap(right);
+    cout <<"---------\n";
+    TreapNode* m = merge(left,right);
+    printTreap(m);
+    freeTreap(t);
+
+    // for(auto &d : directories)
+    // {
+    //     vector<TreapNode*> treaps = upload_treaps(d);
+    //     //insert_results.push_back(insert_test(treaps));
+    //     remove_results.push_back(remove_test(treaps));
+    // }
     // for(auto& i: insert_results)
     // {
     //     cout<<i <<" ";
     // }
-    for(auto &r : remove_results)
-    {
-        cout<< r <<" ";
-    }
-    cout<<"\n";
+    // for(auto &r : remove_results)
+    // {
+    //     cout<< r <<" ";
+    // }
+    // cout<<"\n";
     
     
 
